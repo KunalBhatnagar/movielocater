@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import MovieList from './component/MovieList';
+import MovieDetail from './component/MovieDetail';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
@@ -18,22 +21,32 @@ function App() {
   };
 
   return (
-    <div className="App container" >
-      <h1 className="text-center my-4">Search any</h1>
-      <form onSubmit={searchMovies} className="form-inline justify-content-center mb-4">
-        <input
-          type="text"
-          className="form-control mr-2"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search for a movie or series"
-        />
-        <div className="d-grid gap-2 p-2 col-2 mx-auto" >
-        <button type="submit" className="btn btn-primary">Search</button>
-        </div>
-      </form>
-      <MovieList movies={movies} />
-    </div>
+    <Router>
+      <div className="App container">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <h1>Movie Finder</h1>
+                <form onSubmit={searchMovies} className="form-inline justify-content-center mb-4 d-flex ">
+                  <input
+                    type="text"
+                    className="form-control mr-2"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Search for a movie or series"
+                  />
+                  <button type="submit" className="btn btn-primary ms-4  rounded  ">Search</button>
+                </form>
+                <MovieList movies={movies} />
+              </>
+            }
+          />
+          <Route path="/movie/:id" element={<MovieDetail />} /> {/* New route for movie details */}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
