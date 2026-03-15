@@ -1,7 +1,7 @@
-import express from 'express';
-import axios from 'axios';
-import cors from 'cors';
-import dotenv from 'dotenv';
+const express = require('express');
+const axios = require('axios');
+const cors = require('cors');
+const dotenv = require('dotenv');
 
 dotenv.config();
 
@@ -178,9 +178,9 @@ app.use((req, res) => {
 
 /* ============ SERVER ============ */
 /* ============ SERVER ============ */
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
   console.log(`📺 TMDB API Key: ${API_KEY ? '✓ Connected' : '✗ Not set'}`);
 });
 
-export default app;
+module.exports = app;
