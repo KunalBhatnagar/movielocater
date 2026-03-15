@@ -2,7 +2,6 @@ import React from 'react';
 import { Heart, ArrowLeft } from 'lucide-react';
 import MovieCard from './MovieCard';
 import { useFavorites } from '../hooks/useCustom';
-import { Link } from 'react-router-dom';
 
 const FavoritesView = ({ onBack }) => {
   const { favorites, toggleFavorite, isFavorite } = useFavorites();

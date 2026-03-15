@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { movieAPI } from '../utils/api';
+import React, { useState, useEffect, useCallback } from 'react';
 import MovieCard from './MovieCard';
 import LoadingSkeleton from './LoadingSkeleton';
 import { useFavorites } from '../hooks/useCustom';
@@ -10,7 +9,7 @@ const MovieCategory = ({ title, apiCall, icon = '🎬' }) => {
   const { isFavorite, toggleFavorite } = useFavorites();
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchMovies = useCallback(async () => {
       try {
         setLoading(true);
         const response = await apiCall();
@@ -21,10 +20,10 @@ const MovieCategory = ({ title, apiCall, icon = '🎬' }) => {
       } finally {
         setLoading(false);
       }
-    };
+    }, [apiCall, title]);
 
     fetchMovies();
-  }, []);
+  }, [apiCall, title]);
 
   if (loading) {
     return (
