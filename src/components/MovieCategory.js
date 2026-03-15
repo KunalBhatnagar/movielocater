@@ -8,22 +8,22 @@ const MovieCategory = ({ title, apiCall, icon = '🎬' }) => {
   const [loading, setLoading] = useState(true);
   const { isFavorite, toggleFavorite } = useFavorites();
 
-  useEffect(() => {
-    const fetchMovies = useCallback(async () => {
-      try {
-        setLoading(true);
-        const response = await apiCall();
-        setMovies(response.data.results?.slice(0, 8) || []);
-      } catch (error) {
-        console.error(`Error fetching ${title}:`, error);
-        setMovies([]);
-      } finally {
-        setLoading(false);
-      }
-    }, [apiCall, title]);
-
-    fetchMovies();
+  const fetchMovies = useCallback(async () => {
+    try {
+      setLoading(true);
+      const response = await apiCall();
+      setMovies(response.data.results?.slice(0, 8) || []);
+    } catch (error) {
+      console.error(`Error fetching ${title}:`, error);
+      setMovies([]);
+    } finally {
+      setLoading(false);
+    }
   }, [apiCall, title]);
+
+  useEffect(() => {
+    fetchMovies();
+  }, [fetchMovies]);
 
   if (loading) {
     return (
