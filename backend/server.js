@@ -177,7 +177,10 @@ app.use((req, res) => {
 });
 
 /* ============ SERVER ============ */
-app.listen(PORT, () => {
+/* ============ SERVER ============ */
+const server = app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
   console.log(`📺 TMDB API Key: ${API_KEY ? '✓ Connected' : '✗ Not set'}`);
 });
+
+export default app;
