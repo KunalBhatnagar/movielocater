@@ -1,141 +1,71 @@
-/* App.css */
+/* App-specific styles */
 
-body {
-  background-color: #141414; /* Netflix-like dark background */
-  color: #ffffff; /* White text color */
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+/* Smooth page transitions */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in forwards;
 }
 
-h1 {
-  color: #e50914; /* Netflix red for the title */
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  font-family:American Typewriter;
-}
-h4{
-  text-align: left;
-}
-p{
-  text-align: left;
+.animate-slide-in {
+  animation: slideIn 0.4s ease-out forwards;
 }
 
-.form-control {
-  width: 300px;
-  border-radius: 0;
-  background-color: #333;
-  color: #ffffff;
-  border: 1px solid #444;
+.animate-scale-up {
+  animation: scaleUp 0.3s ease-out forwards;
 }
 
-.btn-primary {
-  background-color: #e50914;
-  border: none;
-  border-radius: 0;
-  padding: 10px 20px;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.btn-primary:hover {
-  background-color: #f40612;
+@keyframes slideIn {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-.card {
-  background-color: #222;
-  border: none;
-  transition: transform 0.3s, box-shadow 0.3s;
+@keyframes scaleUp {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+/* Custom scrollbar for smooth glass effect */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.card-img-top {
-  border-bottom: 4px solid #e50914;
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.card-title {
-  color: #ffffff;
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-top: 10px;
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 5px;
+  backdrop-filter: blur(10px);
 }
 
-.card-text {
-  color: #b3b3b3;
-}
-
-.text-center {
-  color: #b3b3b3;
-}
-
-.row {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.col-md-4 {
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-.movie-detail {
-  color: #ffffff;
-  text-align: center;
-}
-
-.movie-detail img {
-  width: 100%;
-  max-width: 400px;
-  margin-bottom: 20px;
-}
-
-.movie-detail p {
-  font-size: 1.1rem;
-  margin: 10px 0;
-}
-.movie-detail .btn-secondary {
-  margin-bottom: 20px;
-  font-size: 1.2rem;
-}
-.streaming-platforms {
-  padding: 10px;
-}
-
-.platform-list {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.platform-item {
-  margin: 10px;
-}
-
-.platform-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-}
-
-.platform-logo {
-  width: 45px;
-  height: auto;
-  margin-right: 8px;
-}
-.movie-details-container {
-  display: flex;
-  align-items: flex-start; /* Align items at the top */
-  padding: 20px;
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .movie-poster {
-  flex-shrink: 0; /* Prevent the poster from shrinking */
-  margin-right: 20px; /* Add space between poster and details */
+  flex-shrink: 0;
+  margin-right: 20px;
 }
 
 .movie-poster img {

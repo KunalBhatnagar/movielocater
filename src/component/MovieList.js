@@ -1,30 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import MovieCard from '../components/MovieCard';
 
-const MovieList = ({ movies }) => {
+const MovieList = ({ movies, isFavorite, onFavoriteToggle }) => {
+  if (movies.length === 0) {
+    return (
+      <div className="flex items-center justify-center py-16">
+        <div className="text-center glass-lg rounded-xl p-8 max-w-md">
+          <p className="text-slate-400 text-lg mb-2">🎬 No movies found</p>
+          <p className="text-slate-500 text-sm">Try searching for your favorite movie or TV show</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="row">
-      {movies.length > 0 ? (
-        movies.map((movie) => (
-          <div className="col-md-4 mb-4" key={movie.id}>
-            <div className="card h-100">
-              <Link to={`/movie/${movie.id}`}> {/* Ensure correct ID is passed here */}
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  className="card-img-top"
-                  alt={movie.title || movie.name}
-                />
-              </Link>
-              <div className="card-body">
-                <h5 className="card-title">{movie.title || movie.name}</h5>
-                <p className="card-text">Media Type: {movie.media_type}</p>
-              </div>
-            </div>
-          </div>
-        ))
-      ) : (
-        <p className="text-center">No movies found</p>
-      )}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 animate-fade-in">
+      {movies.map((movie) => (
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+          isFavorite={isFavorite(movie.id)}
+          onFavoriteToggle={onFavoriteToggle}
+        />
+      ))}
     </div>
   );
 };
